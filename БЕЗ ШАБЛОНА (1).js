@@ -390,7 +390,41 @@ while (true) {
             alert("Такого прохода нет.");
         }
     }
-    
+    else if (room === "комната родителей"){
+        const choice = prompt(
+            "ВЫ зашли в комнуту родителей\n" +
+            "1 — Обыскать кровать\n" +
+            "2 — обыскать сейф\n" +
+            "3 — обыскать комод\n" +
+            "4 — обыскать тумбочку\n" +
+            "5 — Вернутся\n" +
+            "6 — Посмотреть инвентарь\n" +
+            "0 — Выйти"
+        );
+        if (choice === "0" || choice === null) {
+            break;
+        } else if ( choice === "1"){
+            alert('В кровати вы нашли 10 монет')
+            if (balance["кровать2"] === undefined) {alert("Уже обыскано"); continue}
+            money += balance["кровать2"]
+            delete balance["кровать2"]
+        } else if ( choice === "2"){
+        
+        } else if ( choice === "3"){
+            alert('В комоде вы нашли 30 монет')
+            if (balance["комод"] === undefined) {alert("Уже обыскано"); continue}
+            money += balance["комод"]
+            delete balance["комод"]
+        } else if ( choice === "4"){
+
+        } else if ( choice === "5"){
+
+        } else if ( choice === "6"){
+            showInventory();
+        } else{
+            alert("Такого прохода нет.");
+        }
+    }
     
     // TODO: здесь добавляйте else if для своих комнат.
     // В готовых блоках можно подсмотреть переходы, возврат и сбор предмета.
