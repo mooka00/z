@@ -1,13 +1,14 @@
-const inventory = [];
+
 let room = "вход";
 let money = 0
 let x = 0
+const inventory = [];
 let balance = { "ящик1": 10, "шкаф1": 20, "раковина": 5, "посудомойка": 20, "диван": 50, "кровать1": 100, "шкаф2": 25, "тумбочка": 10, "кровать2": 10, "комод": 30 }
 function showInventory() {
     if (inventory.length === 0) {
         alert("Рюкзак пуст.");
     } else {
-        alert("В рюкзаке: " + inventory.join(", "));
+        alert(`В рюкзаке: ${inventory.join(", ")}\n Монет ${money}`);
     }
 }
 let pass = []
@@ -235,7 +236,7 @@ while (true) {
         } else if (choice === "3") {
             showInventory();
         } else {
-            alert("Такого выбора нет");
+            alert("Такого выбора нет")
         }
     }
     else if (room === "правая комната") {
@@ -249,14 +250,18 @@ while (true) {
         if (choice === "0" || choice === null) {
             break;
         } else if (choice === "1") {
-            inventory.push("ключ")
-            alert("в сундуке вы нашли ключ от туалета")
+            if (inventory.includes("ключ")) {
+                alert("Сундук уже пуст.")
+            } else {
+                inventory.push("ключ")
+                alert("в сундуке вы нашли ключ от туалета")
+            }
         } else if (choice === "2") {
             room = "подвал"
         } else if (choice === "3") {
             showInventory();
         } else {
-            alert("Такого выбора нет");
+            alert("Такого выбора нет")
         }
     }
     else if (room === "второй этаж") {
@@ -282,7 +287,7 @@ while (true) {
         } else if (choice === "5") {
             showInventory();
         } else {
-            alert("Такого выбора нет");
+            alert("Такого выбора нет")
         }
     }
     else if (room === "детская комната") {
@@ -298,19 +303,22 @@ while (true) {
         if (choice === "0" || choice === null) {
             break;
         } else if (choice === "1") {
-            alert('В кровате вы нашли 100 монет')
+
             if (balance["кровать1"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["кровать1"]
+            alert('В кровате вы нашли 100 монет')
             delete balance["кровать1"]
         } else if (choice === "2") {
-            alert('В шкафу вы нашли 25 монет')
+
             if (balance["шкаф2"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["шкаф2"]
+            alert('В шкафу вы нашли 25 монет')
             delete balance["шкаф2"]
         } else if (choice === "3") {
-            alert("В тумбочке вы нашли 10 монет")
+
             if (balance["тумбочка"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["тумбочка"]
+            alert("В тумбочке вы нашли 10 монет")
             delete balance["тумбочка"]
         } else if (choice === "4") {
             room = "второй этаж"
@@ -413,16 +421,16 @@ while (true) {
         if (choice === "0" || choice === null) {
             break;
         } else if (choice === "1") {
-            alert('В кровати вы нашли 10 монет')
             if (balance["кровать2"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["кровать2"]
+            alert('В кровати вы нашли 10 монет')
             delete balance["кровать2"]
         } else if (choice === "2") {
             room = "сейф"
         } else if (choice === "3") {
-            alert('В комоде вы нашли 30 монет')
             if (balance["комод"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["комод"]
+            alert('В комоде вы нашли 30 монет')
             delete balance["комод"]
         } else if (choice === "4") {
             if (inventory.includes("чекушка")) {
@@ -440,7 +448,7 @@ while (true) {
             alert("Такого выбора нет");
         }
     }
-    else if (room = "сейф") {
+    else if (room === "сейф") {
         const choice = prompt(
             "перед собой вы видете сейф с паролем состоящий из 4 цифр\n" +
             "1 - написать код\n" +
@@ -473,15 +481,18 @@ while (true) {
             alert("Такого выбора нет");
         }
     }
-    else if (room === "туалет"){
+    else if (room === "туалет") {
         const choice = prompt(
             "ВЫ в туалете в ктором сидел твой батя\n" +
             "1 - попросится погулять\n" +
             "2 - вернутся\n" +
             "3 - посмотреть инвентарь\n" +
-            "0 - выйти\n" 
+            "0 - выйти\n"
         )
-        if (choice === "1"){
+        if (choice === "0" || choice === null) {
+            break;
+        } else if (choice === "1") {
+
             if (inventory.includes("чекушка") && inventory.includes("сушёная рыба")) {
                 alert("вы смогли подкупить батю спомощью чекушки ")
                 break
@@ -493,15 +504,23 @@ while (true) {
             else {
                 alert("вы не смогли договорится с батей")
             }
-        } else if (choice === "2"){
+        } else if (choice === "2") {
             room = "вход"
+        } else if (choice === "3") {
+            showInventory();
+        } else {
+            alert("Такого выбора нет");
         }
     }
-
-
-
-    // TODO: здесь добавляйте else if для своих комнат.
-    // В готовых блоках можно подсмотреть переходы, возврат и сбор предмета.
+    x += 1
+}
+if (money === 280) {
+    alert("Игра завершена. Вы подобрали максимальное возможное количество монет - 280")
+} else if (x < 14) {
+    alert(`Игра завершена. Вы прошли оптимальным способом`)
+}
+else {
+    alert(`Игра завершенаю. Вы не выполнили ни одного доп задания (на максимально количество монет, ваши монеты - ${money}) и (вы прошли не оптимальным способом)`)
 }
 
-alert("Игра завершена.")
+
