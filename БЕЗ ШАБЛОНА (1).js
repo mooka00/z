@@ -2,7 +2,7 @@ const inventory = [];
 let room = "вход";
 let money = 0
 let x = 0
-let balance = {"ящик1" : 10, "шкаф1" : 20, "раковина" : 5, "посудомойка" : 20, "диван" : 50, "кровать1" : 100, "шкаф2" : 25, "тумбочка" : 10, "кровать2" : 10, "комод" : 30}
+let balance = { "ящик1": 10, "шкаф1": 20, "раковина": 5, "посудомойка": 20, "диван": 50, "кровать1": 100, "шкаф2": 25, "тумбочка": 10, "кровать2": 10, "комод": 30 }
 function showInventory() {
     if (inventory.length === 0) {
         alert("Рюкзак пуст.");
@@ -18,7 +18,7 @@ alert(
 );
 
 while (true) {
-    
+
     if (room === "вход") {
         const choice = prompt(
             "ВЫ У ВХОДА\n" +
@@ -33,30 +33,30 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             room = "коридор"
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "кухня"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             room = "зал"
-        } else if ( choice === "4"){
+        } else if (choice === "4") {
             room = "подвал"
-        } else if ( choice === "5"){
+        } else if (choice === "5") {
             room = "второй этаж"
-        } else if ( choice === "6"){
+        } else if (choice === "6") {
             if (inventory.includes("ключ")) {
                 room = "туалет"
             }
             else {
                 alert("Туалет закрыт")
             }
-        } else if (choice === "7"){
-            showInventory(); 
-        } else{
-            alert("Такого прохода нет.");
+        } else if (choice === "7") {
+            showInventory();
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if(room === "коридор"){
+    else if (room === "коридор") {
         const choice = prompt(
             "ВЫ осматриваете коридор\n" +
             "1 — Осмотреть ящик\n" +
@@ -67,25 +67,25 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if (balance["ящик1"] === undefined) {alert("Уже обыскано"); continue}
+        } else if (choice === "1") {
+            if (balance["ящик1"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["ящик1"]
             delete balance["ящик1"]
-            alert (`вы осмотрели ящик и нашли 10 монет`)
-        } else if ( choice === "2"){
-            if (balance["шкаф1"] === undefined) {alert("Уже обыскано"); continue}
+            alert(`вы осмотрели ящик и нашли 10 монет`)
+        } else if (choice === "2") {
+            if (balance["шкаф1"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["шкаф1"]
             delete balance["шкаф1"]
-            alert (`вы осмотрели ящик и нашли 20 монет`)
-        } else if ( choice === "3"){
+            alert(`вы осмотрели ящик и нашли 20 монет`)
+        } else if (choice === "3") {
             room = "вход"
-        } else if ( choice === "4"){
+        } else if (choice === "4") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
-    else if(room === "кухня"){
+    else if (room === "кухня") {
         const choice = prompt(
             "Вы на кухне\n" +
             "1 — Осмотреть раковину\n" +
@@ -98,30 +98,35 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if (balance["раковина"] === undefined) {alert("Уже обыскано"); continue}
+        } else if (choice === "1") {
+            if (balance["раковина"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["раковина"]
             delete balance["раковина"]
-            alert (`Вы осмотрели раковину и нашли 5 монет`)
-        } else if ( choice === "2"){
-            alert (`Вы осмотрели плиту и ничего не нашли`)
-        } else if ( choice === "3"){
-            alert(`Вы осмотрели холодильник и нашли магическую траву`)
-            inventory.push("магическая трава")
-        } else if ( choice === "4"){
-            if (balance["посудомойка"] === undefined) {alert("Уже обыскано"); continue}
+            alert(`Вы осмотрели раковину и нашли 5 монет`)
+        } else if (choice === "2") {
+            alert(`Вы осмотрели плиту и ничего не нашли`)
+        } else if (choice === "3") {
+            if (inventory.includes("сушёная рыба")) {
+                alert("в холодильнике нету ничего полезного")
+            }
+            else {
+                alert(`Вы осмотрели холодильник и нашли сушёную рыбу`)
+                inventory.push("сушёная рыба")
+            }
+        } else if (choice === "4") {
+            if (balance["посудомойка"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["посудомойка"]
             delete balance["посудомойка"]
             alert(`Вы осмотрели посудомойку и нашли 20 монет`)
-        } else if (choice === "5"){
+        } else if (choice === "5") {
             room = "вход"
         } else if (choice === "6") {
             showInventory()
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if(room === "зал"){
+    else if (room === "зал") {
         const choice = prompt(
             "Вы в зале\n" +
             "1 — Осмотреть диван\n" +
@@ -134,27 +139,31 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if (balance["диван"] === undefined) {alert("Уже обыскано"); continue}
+        } else if (choice === "1") {
+            if (balance["диван"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["диван"]
             delete balance["диван"]
-            alert (`Вы осмотрели диван и нашли 50 монет`)
-        } else if ( choice === "2"){
-            alert (`Вы осмотрели телевизор и ничего не нашли`)
-        } else if ( choice === "3"){
-            alert(`Вы осмотрели стол и нашли дневник брата с двойкой`)
-            inventory.push("дневник брата с двойкой")
-        } else if ( choice === "4"){
+            alert(`Вы осмотрели диван и нашли 50 монет`)
+        } else if (choice === "2") {
+            alert(`Вы осмотрели телевизор и ничего не нашли`)
+        } else if (choice === "3") {
+            if (inventory.includes("дневник брата с двойкой")) {
+                alert("стол пуст")
+            } else {
+                alert(`Вы осмотрели стол и нашли дневник брата с двойкой`)
+                inventory.push("дневник брата с двойкой")
+            }
+        } else if (choice === "4") {
             alert(`Вы осмотрели стулья и ничего не нашли`)
-        } else if (choice === "5"){
+        } else if (choice === "5") {
             room = "вход"
         } else if (choice === "6") {
             showInventory()
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if(room === "подвал"){
+    else if (room === "подвал") {
         const choice = prompt(
             "ВЫ осматриваете подвал\n" +
             "1 — Левая комната\n" +
@@ -165,17 +174,17 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             room = "левая комната"
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "правая комната"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             room = "вход"
-        } else if ( choice === "4"){
+        } else if (choice === "4") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
     else if (room === "левая комната") {
         const choice = prompt(
@@ -187,15 +196,15 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             room = "младший брат"
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "подвал"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
     else if (room === "младший брат") {
         const choice = prompt(
@@ -207,29 +216,29 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if(inventory.includes("дневник брата с двойкой")){
+        } else if (choice === "1") {
+            if (inventory.includes("дневник брата с двойкой")) {
                 inventory.splice(inventory.indexOf("дневник брата с двойкой"), 1)
                 inventory.push("плюшевая игрушка сестры")
                 alert("вы показали дневник младшему брату и если он не отдаст игрушку то вы покажете дневник родителям")
                 alert("вы получили плюшевую игрушку сестры")
                 pass.push("брат")
             }
-            else if (pass.includes("брат")){
+            else if (pass.includes("брат")) {
                 alert("брат говорит вам чтобы вы его не донимали")
             }
-            else{
+            else {
                 alert("вам нечем шантажировать брата")
             }
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "подвал"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
-    else if (room === "правая комната"){
+    else if (room === "правая комната") {
         const choice = prompt(
             "ВЫ осматриваете правую комнату\n" +
             "1 — Осмотреть сундук\n" +
@@ -239,18 +248,18 @@ while (true) {
         )
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             inventory.push("ключ")
             alert("в сундуке вы нашли ключ от туалета")
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "подвал"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if(room === "второй этаж"){
+    else if (room === "второй этаж") {
         const choice = prompt(
             "ВЫ поднялись на второй этаж\n" +
             "1 — комната моя и брата\n" +
@@ -262,21 +271,21 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             room = "детская комната"
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "комната сестры"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             room = "комната родителей"
-        } else if ( choice === "4"){
+        } else if (choice === "4") {
             room = "вход"
-        } else if ( choice === "5"){
+        } else if (choice === "5") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
-    else if(room === "детская комната"){
+    else if (room === "детская комната") {
         const choice = prompt(
             "ВЫ вошли в свою комнату\n" +
             "1 — Обыскать кровать\n" +
@@ -288,28 +297,28 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             alert('В кровате вы нашли 100 монет')
-            if (balance["кровать1"] === undefined) {alert("Уже обыскано"); continue}
+            if (balance["кровать1"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["кровать1"]
             delete balance["кровать1"]
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             alert('В шкафу вы нашли 25 монет')
-            if (balance["шкаф2"] === undefined) {alert("Уже обыскано"); continue}
+            if (balance["шкаф2"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["шкаф2"]
             delete balance["шкаф2"]
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             alert("В тумбочке вы нашли 10 монет")
-            if (balance["тумбочка"] === undefined) {alert("Уже обыскано"); continue}
+            if (balance["тумбочка"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["тумбочка"]
             delete balance["тумбочка"]
-        } else if ( choice === "4"){
+        } else if (choice === "4") {
             room = "второй этаж"
-        } else if ( choice === "5"){
+        } else if (choice === "5") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
     else if (room === "комната сестры") {
         const choice = prompt(
@@ -321,17 +330,17 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             room = "сестра"
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "второй этаж"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
-    else if (room === "сестра"){
+    else if (room === "сестра") {
         const choice = prompt(
             "ВЫ просите сестру пропустить вас на чердак\n" +
             "она отвечает что пропустит если вернешь игрушку её игрушку\n" +
@@ -342,30 +351,30 @@ while (true) {
         )
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if(inventory.includes("плюшевая игрушка сестры")){
+        } else if (choice === "1") {
+            if (inventory.includes("плюшевая игрушка сестры")) {
                 inventory.splice(inventory.indexOf("плюшевая игрушка сестры"), 1)
                 room = "чердак"
                 alert("сестра пропустила вас на чердак")
                 pass.push("сестра")
             }
-            else if (pass.includes("сестра")){
+            else if (pass.includes("сестра")) {
                 room = "чердак"
             }
-            else{
+            else {
                 alert("у вас нету плюшевой игрушки сестры")
             }
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "второй этаж"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
-        }   
+        } else {
+            alert("Такого выбора нет");
+        }
     }
-    else if (room === "чердак"){
+    else if (room === "чердак") {
         const choice = prompt(
-            "ВЫ поднялись на чердак и увидели маму\n" +
+            "ВЫ поднялись на чердак и увидели маму которая убирается на чердаке\n" +
             "1 — Поговорить с мамой\n" +
             "2 — Вернутся\n" +
             "3 — Посмотреть инвентарь\n" +
@@ -373,24 +382,24 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
-            if (inventory.includes("пароль")){
-                alert("вы уже поговорили с мамой")
+        } else if (choice === "1") {
+            if (inventory.includes("пароль от сейфа 0905")) {
+                alert("вам неочем говорить с мамой")
                 continue
             }
-            else{
-                inventory.push("пароль")
+            else {
+                inventory.push("пароль от сейфа 0905")
                 alert("мама дала вам пароль от сейфа")
             }
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "второй этаж"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if (room === "комната родителей"){
+    else if (room === "комната родителей") {
         const choice = prompt(
             "ВЫ зашли в комнуту родителей\n" +
             "1 — Обыскать кровать\n" +
@@ -403,37 +412,37 @@ while (true) {
         );
         if (choice === "0" || choice === null) {
             break;
-        } else if ( choice === "1"){
+        } else if (choice === "1") {
             alert('В кровати вы нашли 10 монет')
-            if (balance["кровать2"] === undefined) {alert("Уже обыскано"); continue}
+            if (balance["кровать2"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["кровать2"]
             delete balance["кровать2"]
-        } else if ( choice === "2"){
+        } else if (choice === "2") {
             room = "сейф"
-        } else if ( choice === "3"){
+        } else if (choice === "3") {
             alert('В комоде вы нашли 30 монет')
-            if (balance["комод"] === undefined) {alert("Уже обыскано"); continue}
+            if (balance["комод"] === undefined) { alert("Уже обыскано"); continue }
             money += balance["комод"]
             delete balance["комод"]
-        } else if ( choice === "4"){
-            if (inventory.includes("чекушка")){
+        } else if (choice === "4") {
+            if (inventory.includes("чекушка")) {
                 alert("тумбочка пустая")
             }
-            else{
+            else {
                 inventory.push("чекушка")
                 alert("вы нашли чекушку")
             }
-        } else if ( choice === "5"){
+        } else if (choice === "5") {
             room = "второй этаж"
-        } else if ( choice === "6"){
+        } else if (choice === "6") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
-    else if (room = "сейф"){
+    else if (room = "сейф") {
         const choice = prompt(
-            "перед собой вы видете сейф с паролем состоящий из 4 цифр\n" + 
+            "перед собой вы видете сейф с паролем состоящий из 4 цифр\n" +
             "1 - написать код\n" +
             "2 - вернутся\n" +
             "3 - посмотреть инвентарь\n" +
@@ -442,15 +451,14 @@ while (true) {
         if (choice === "0" || choice === null) {
             break;
         } else if (choice === "1") {
-            const password = prompt("введите код") 
-            
+            const password = prompt("введите код")
             if (password === "0905") {
                 if (inventory.includes("пароль от акаунта бати в WORLD OF TANKS")) {
                     alert("сейф пуст")
                 }
-                else{
+                else {
                     inventory.push("пароль от акаунта бати в WORLD OF TANKS")
-                    alert ("вы получили пароль от акаунта бати в WORLD OF TANKS")
+                    alert("вы получили пароль от акаунта бати в WORLD OF TANKS")
                 }
                 room = "комната родителей"
             }
@@ -461,13 +469,13 @@ while (true) {
             room = "комната родителей"
         } else if (choice === "3") {
             showInventory();
-        } else{
-            alert("Такого прохода нет.");
+        } else {
+            alert("Такого выбора нет");
         }
     }
 
-    
-    
+
+
     // TODO: здесь добавляйте else if для своих комнат.
     // В готовых блоках можно подсмотреть переходы, возврат и сбор предмета.
 }
