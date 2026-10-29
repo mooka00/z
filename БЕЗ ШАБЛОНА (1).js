@@ -7,9 +7,19 @@ let balance = { "ящик1": 10, "шкаф1": 20, "раковина": 5, "пос
 function showInventory() {
     if (inventory.length === 0) {
         alert("Рюкзак пуст.");
-    } else {
-        alert(`В рюкзаке: ${inventory.join(", ")}`);
+        return;
     }
+
+    const counts = {};
+    for (const item of inventory) {
+        counts[item] = (counts[item] || 0) + 1;
+    }
+
+    const lines = Object.entries(counts).map(([name, count]) =>
+        count > 1 ? `${name} x${count}` : name
+    );
+
+    alert("В рюкзаке:\n" + lines.join("\n"));
 }
 let pass = []
 alert(
@@ -512,8 +522,11 @@ while (true) {
             alert("Такого выбора нет");
         }
     }
-    inventory.splice(inventory.indexOf(money), 1)
-    inventory.push(money)
+    
+    for (let i = 0; i < money; i++){
+        inventory.push("money")
+    }
+    money = 0
     x += 1
 }
 if (money === 280) {
