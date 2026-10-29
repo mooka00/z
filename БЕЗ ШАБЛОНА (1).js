@@ -351,7 +351,7 @@ while (true) {
     else if (room === "сестра") {
         const choice = prompt(
             "ВЫ просите сестру пропустить вас на чердак\n" +
-            "она отвечает что пропустит если вернешь игрушку её игрушку\n" +
+            "она отвечает что пропустит если вернешь её игрушку\n" +
             "1 — вернуть игрушку\n" +
             "2 — Вернутся\n" +
             "3 — Посмотреть инвентарь\n" +
@@ -494,7 +494,7 @@ while (true) {
         } else if (choice === "1") {
 
             if (inventory.includes("чекушка") && inventory.includes("сушёная рыба")) {
-                alert("вы смогли подкупить батю спомощью чекушки ")
+                alert("вы смогли подкупить батю спомощью чекушки и сушёной рыбы")
                 break
             }
             else if (inventory.includes("пароль от акаунта бати в WORLD OF TANKS")) {
@@ -512,6 +512,8 @@ while (true) {
             alert("Такого выбора нет");
         }
     }
+    inventory.splice(inventory.indexOf(money), 1)
+    inventory.push(money)
     x += 1
 }
 if (money === 280) {
