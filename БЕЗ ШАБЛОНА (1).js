@@ -8,7 +8,7 @@ function showInventory() {
     if (inventory.length === 0) {
         alert("Рюкзак пуст.");
     } else {
-        alert(`В рюкзаке: ${inventory.join(", ")}\n Монет ${money}`);
+        alert(`В рюкзаке: ${inventory.join(", ")}`);
     }
 }
 let pass = []
