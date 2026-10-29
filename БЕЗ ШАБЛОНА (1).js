@@ -431,6 +431,42 @@ while (true) {
             alert("Такого прохода нет.");
         }
     }
+    else if (room = "сейф"){
+        const choice = prompt(
+            "перед собой вы видете сейф с паролем состоящий из 4 цифр\n" + 
+            "1 - написать код\n" +
+            "2 - вернутся\n" +
+            "3 - посмотреть инвентарь\n" +
+            "0 - выйти"
+        )
+        if (choice === "0" || choice === null) {
+            break;
+        } else if (choice === "1") {
+            const password = prompt("введите код") 
+            
+            if (password === "0905") {
+                if (inventory.includes("пароль от акаунта бати в WORLD OF TANKS")) {
+                    alert("сейф пуст")
+                }
+                else{
+                    inventory.push("пароль от акаунта бати в WORLD OF TANKS")
+                    alert ("вы получили пароль от акаунта бати в WORLD OF TANKS")
+                }
+                room = "комната родителей"
+            }
+            else {
+                alert("пароль не тот")
+            }
+        } else if (choice === "2") {
+            room = "комната родителей"
+        } else if (choice === "3") {
+            showInventory();
+        } else{
+            alert("Такого прохода нет.");
+        }
+    }
+
+    
     
     // TODO: здесь добавляйте else if для своих комнат.
     // В готовых блоках можно подсмотреть переходы, возврат и сбор предмета.
